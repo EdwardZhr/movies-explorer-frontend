@@ -1,0 +1,44 @@
+.techs {
+    padding: 100px 70px;
+    background-color: #F5F5F5;
+}
+
+.techs__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.techs__title {
+    margin: 90px 0 0;
+    font-size: 50px;
+    line-height: 58px;
+    font-weight: 400;
+}
+
+.techs__subtitle {
+    margin: 26px 0 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 500px;
+}
+
+.techs__ul {
+    display: flex;   
+    list-style: none; 
+    margin-top: 100px;
+}
+
+.techs__li {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 16.94px;
+    width: 90px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #E8E8E8;
+}

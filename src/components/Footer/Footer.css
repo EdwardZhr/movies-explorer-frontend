@@ -1,0 +1,37 @@
+.footer {
+    padding: 79px 70px 20px;
+}
+
+.footer__title {
+    font-size: 13px;
+    line-height: 15.73px;
+    font-weight: 400;
+    color: #A0A0A0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    border-bottom: 1px #E8E8E8 solid;
+}
+
+.footer_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.footer_nav {
+    display: flex;
+}
+
+.footer__el {
+    font-size: 13px;
+    line-height: 15.73px;
+    text-decoration: none;
+    color: black;
+    margin: 0;
+}
+
+.footer__el:last-child {
+    margin-left: 20px;
+}
