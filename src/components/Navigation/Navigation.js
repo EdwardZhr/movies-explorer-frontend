@@ -30,10 +30,10 @@ function Navigation() {
                 <Route path='/' element={
                     <ul className='navigation__ul'>
                         <li className='navigation__li'> 
-                            <Link to='/signup' className='navigation__link navigation__link_signup'>Регистрация</Link>
+                            <Link to='/signup' className='navigation__signup'>Регистрация</Link>
                         </li>
                         <li className='navigation__li'>
-                            <Link to='/signin' className='navigation__link navigation__link_signin'>Войти</Link>
+                            <Link to='/signin' className='navigation__signin'>Войти</Link>
                         </li>
                     </ul>
                 } />

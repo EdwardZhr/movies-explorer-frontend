@@ -5,4 +5,13 @@
     line-height: 26.63px;
     padding-bottom: 23px;
     border-bottom: 1px solid black;
+    letter-spacing: calc(-1em * 0.04);
+}
+
+@media screen and (max-width: 479px) {
+    .title {
+        font-size: 18px;
+        line-height: 21.78px;
+        padding-bottom: 28px;
+    }
 }

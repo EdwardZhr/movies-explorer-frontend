@@ -1,6 +1,7 @@
 .navigation__ul {
     display: flex;   
     list-style: none; 
+    padding: 0;
 }
 
 .navigation__li {
@@ -9,12 +10,14 @@
     align-items: center;
 }
 
-.navigation__li:last-child {
-    margin-left: 50px;
+@media screen and (max-width: 479px) {
+    .navigation__li {
+        margin-left: 0;
+    }
 }
 
-.navigation__li:nth-child(2) {
-    margin-left: 20px;
+.navigation__li:nth-child(3) {
+    margin-left: 50px;
 }
 
 .navigation__link {
@@ -28,13 +31,21 @@
     font-weight: 500;
 }
 
-.navigation__link_signup {
+.navigation__signup {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+    text-decoration: none;
+    color: black;
 }
 
-.navigation__link_signin {
+@media screen and (max-width: 479px) {
+    .navigation__signup {
+        font-size: 10px;
+    }
+}
+
+.navigation__signin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +58,16 @@
     font-size: 12px;
     line-height: 16px;
     color: white;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 479px) {
+    .navigation__signin {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+        margin-left: 14px;
+    }
 }
 
 .navigation__profile-wrapper {
