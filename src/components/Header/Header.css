@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #F3C1F8;
 }
 
 @media screen and (max-width: 1279px) {
@@ -17,4 +16,8 @@
     .header {
         padding: 0 14px;
     }
+}
+
+.header_main {
+    background-color: #F3C1F8;
 }

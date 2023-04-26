@@ -1,8 +1,18 @@
-import {Route, Routes, Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import profile from '../../images/profile.svg'
 import './Navigation.css'
 
-function Navigation() {
+function Navigation({ location }) {
+    const mainNavLinks = 
+    <ul className='navigation__ul'>
+        <li className='navigation__li'> 
+            <Link to='/signup' className='navigation__signup'>Регистрация</Link>
+        </li>
+        <li className='navigation__li'>
+            <Link to='/signin' className='navigation__signin'>Войти</Link>
+        </li>
+    </ul>;
+    
     const navLinks = 
     <ul className='navigation__ul'>
         <li className='navigation__li'> 
@@ -19,27 +29,15 @@ function Navigation() {
                 </NavLink>
             </div> 
         </li>
-    </ul>
+    </ul>;
 
-    return (
-        <nav className="navigation">
-            <Routes>
-                <Route path='/movies' element={ navLinks } />
-                <Route path='/saved-movies' element={ navLinks } />
-                <Route path='/profile' element={ navLinks } />
-                <Route path='/' element={
-                    <ul className='navigation__ul'>
-                        <li className='navigation__li'> 
-                            <Link to='/signup' className='navigation__signup'>Регистрация</Link>
-                        </li>
-                        <li className='navigation__li'>
-                            <Link to='/signin' className='navigation__signin'>Войти</Link>
-                        </li>
-                    </ul>
-                } />
-            </Routes>
+    return(
+        <nav className='navigation'>
+            {
+                (location.pathname === '/' && mainNavLinks) || navLinks
+            }
         </nav>
-    );
-}
-  
-  export default Navigation;
+    )
+}  
+
+export default Navigation;
