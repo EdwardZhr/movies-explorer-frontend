@@ -7,5 +7,3 @@ JS, React
 ## Команды 
 "start": "react-scripts start",  
 "build": "react-scripts build"
-
-## Функциональность
