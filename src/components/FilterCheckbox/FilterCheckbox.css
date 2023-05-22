@@ -16,6 +16,19 @@
     user-select: none;
 }
 
+@media screen and (max-width: 959px) {
+    .filter-checkbox__title {
+        margin-right: 13px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .filter-checkbox__title {
+        margin-right: 14px;
+        font-size: 11px;
+    }
+}
+
 .filter-checkbox__wrapper {
     position: relative;
     display: flex;

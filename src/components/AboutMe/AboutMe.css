@@ -18,12 +18,14 @@
     display: flex;
     margin-top: 66px;
     justify-content: space-between;
+    gap: 20px
 }
 
 @media screen and (max-width: 479px) {
     .about-me__wrapper {
         margin-top: 60px;
         flex-direction: column;
+        gap: 0
     }
 }
 
@@ -123,8 +125,16 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .about-me__photo {
+        width: 230px;
+        height: 264px;
+    }
+}
+
 @media screen and (max-width: 479px) {
     .about-me__photo {
+        max-width: 292px;
         width: 292px;
         height: 352px;
         order: 1;

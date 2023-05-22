@@ -1,40 +1,45 @@
 import { Link, NavLink } from 'react-router-dom';
-import profile from '../../images/profile.svg'
 import './Navigation.css'
 
-function Navigation({ location }) {
-    const mainNavLinks = 
-    <ul className='navigation__ul'>
-        <li className='navigation__li'> 
-            <Link to='/signup' className='navigation__signup'>Регистрация</Link>
-        </li>
-        <li className='navigation__li'>
-            <Link to='/signin' className='navigation__signin'>Войти</Link>
-        </li>
-    </ul>;
-    
-    const navLinks = 
-    <ul className='navigation__ul'>
-        <li className='navigation__li'> 
-            <NavLink to='/movies' className={({isActive}) => `navigation__link ${isActive ? "navigation__link_active" : ""}`}>Фильмы</NavLink> 
-        </li>
-        <li className='navigation__li'> 
-            <NavLink to='/saved-movies' className={({isActive}) => `navigation__link ${isActive ? "navigation__link_active" : ""}`}>Сохранённые фильмы</NavLink>  
-        </li>
-        <li className='navigation__li'> 
-            <div className='navigation__profile-wrapper'> 
-                <NavLink to='/profile' className="navigation__link navigation__link_active">Аккаунт</NavLink>
-                <NavLink to='/profile' className="navigation__link">
-                    <img src={profile} alt="Профиль" className="navigation__profile-img"/>
-                </NavLink>
-            </div> 
-        </li>
-    </ul>;
+function Navigation({onOpenSidePanel, isSidePanelOpen, loggedIn, width}) {
 
+    const unloggedNavLinks = 
+        <ul className='navigation__ul'>
+            <li className='navigation__li'> 
+                <Link to='/signup' className='navigation__link navigation__link_signup'>Регистрация</Link>
+            </li>
+            <li className='navigation__li'>
+                <Link to='/signin' className='navigation__link navigation__link_signin'>Войти</Link>
+            </li>
+        </ul>;
+
+    const loggedNavLinks = 
+        <ul className='navigation__ul navigation__ul_logged-in'>
+            { width <= 768 && <li className='navigation__li navigation__li_logged-in'> 
+                <NavLink to='/' className={({isActive}) => `navigation__link ${isActive ? "navigation__link_active" : ""}`}>Главная</NavLink> 
+            </li> }
+            <li className='navigation__li navigation__li_logged-in'> 
+                <NavLink to='/movies' className={({isActive}) => `navigation__link ${isActive ? "navigation__link_active" : ""}`}>Фильмы</NavLink> 
+            </li>
+            <li className='navigation__li navigation__li_logged-in'> 
+                <NavLink to='/saved-movies' className={({isActive}) => `navigation__link ${isActive ? "navigation__link_active" : ""}`}>Сохранённые фильмы</NavLink>  
+            </li>
+            <li className='navigation__li navigation__li_logged-in'> 
+                <div className='navigation__profile-wrapper'> 
+                    <NavLink to='/profile' className="navigation__link navigation__link_profile">Аккаунт</NavLink>
+                    <NavLink to='/profile' className="navigation__link navigation__link_img"/>
+                </div> 
+            </li>
+        </ul>;
+
+
+    const navBtn =
+        <div className='navigation__btn' onClick={onOpenSidePanel}/> 
+    
     return(
         <nav className='navigation'>
             {
-                (location.pathname === '/' && mainNavLinks) || navLinks
+                (isSidePanelOpen && loggedNavLinks) || (!loggedIn && unloggedNavLinks) || ((width > 768 && loggedNavLinks) || (width <= 768 && navBtn) || loggedNavLinks)
             }
         </nav>
     )
