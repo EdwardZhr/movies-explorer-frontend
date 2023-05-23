@@ -14,13 +14,13 @@ function Form({title, fields, formConfig, btnText, children}) {
 
     const { handleSubmit, formState: {errors}, control, watch} = useForm({
         defaultValues: defaultValues,
-        mode: 'all'
+        mode: 'onChange'
       });
 
     const data = watch();
 
     const onSubmit = (e) => {
-        console.log('hi')
+        console.log(errors)
     }
 
     return (
@@ -43,7 +43,7 @@ function Form({title, fields, formConfig, btnText, children}) {
                         })
                     }
                     </span>
-                    <button className={`form__btn ${(errors.name || errors.email) &&  'form__btn_disabled'}`}>{btnText}</button>
+                    <button disabled={JSON.stringify(errors) !== '{}'} className={`form__btn ${(JSON.stringify(errors) !== '{}') &&  'form__btn_disabled'}`}>{btnText}</button>
                 </fieldset>
                 {children}
             </form>

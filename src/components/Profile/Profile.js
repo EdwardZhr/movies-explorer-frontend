@@ -17,21 +17,21 @@ function Profile({userInfo, setUserInfo}) {
 
   const formConfig = {
 	email: {
-		required: 'Необходимо указать почту',
+		required: 'Необходимо указать почту \n',
 		pattern: {
 			value: /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/,
-			message: 'Необходимо указать почту'
+			message: 'Необходимо указать почту \n'
 		},
 		minLength: {
 			value: 3,
-			message: 'В поле "E-mail" должно быть больше 3 символов'
+			message: 'В поле "E-mail" должно быть больше 3 символов \n'
 		}
 	},
 	name: {
-		required: 'Необходимо указать имя',
+		required: 'Необходимо указать имя \n',
 		minLength: {
 			value: 2,
-			message: 'В поле "Имя" должно быть больше 2 символов'
+			message: 'В поле "Имя" должно быть больше 2 символов \n'
 		}
 	}
   }
@@ -57,8 +57,8 @@ function Profile({userInfo, setUserInfo}) {
 			<fieldset className='profile__set'>
 				<Field name='name' rules={formConfig.name} control={control} text='Имя' isEdited={isEdited}/>
 				<Field name='email' rules={formConfig.email} control={control} text='E-mail' isEdited={isEdited}/>
-				{isEdited && <span className='profile__error'>{errors.name && `${errors.name.message}`} {errors.name && errors.email && <br/>} {errors.email && `${errors.email.message}`}</span>}
-				<button className={`profile__btn ${isEdited && (errors.name || errors.email) &&  'profile__btn_disabled'}`}>{isEdited ? 'Сохранить' : 'Редактировать'}</button>
+				{isEdited && <span className='profile__error'>{errors.name && `${errors.name.message}`} {errors.email && `${errors.email.message}`}</span>}
+				<button disabled={isEdited && (errors.name || errors.email)}  className={`profile__btn ${isEdited && (errors.name || errors.email) &&  'profile__btn_disabled'}`}>{isEdited ? 'Сохранить' : 'Редактировать'}</button>
 				<button className='profile__btn profile__btn_exit' onClick={signOut}>Выйти из аккаунта</button>
 			</fieldset>
 		</form>

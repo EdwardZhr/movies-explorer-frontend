@@ -10,7 +10,7 @@ function Register () {
 
     const formConfig = {
       email: {
-        required: 'Необходимо указать почту',
+        required: 'Необходимо указать почту \n',
         pattern: {
           value: /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/,
           message: 'Необходимо указать почту \n'
@@ -21,14 +21,14 @@ function Register () {
         }
       },
       password: {
-        required: 'Необходимо указать пароль',
+        required: 'Необходимо указать пароль \n',
         minLength: {
           value: 4,
           message: 'В поле "Пароль" должно быть больше 4 символов \n'
         }
       },
       name: {
-        required: 'Необходимо указать имя',
+        required: 'Необходимо указать имя \n',
         minLength: {
           value: 2,
           message: 'В поле "Имя" должно быть больше 2 символов \n'
