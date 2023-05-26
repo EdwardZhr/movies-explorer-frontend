@@ -5,7 +5,7 @@ function Register () {
     const fields = [
         { name: 'name', text: 'Имя', placeholder: 'Афанасий'},
         { name: 'email', text: 'E-mail', placeholder: 'mailbox@gmail.com'},
-        { name: 'password', text: 'Пароль', placeholder: '12345678'}
+        { name: 'password', text: 'Пароль', placeholder: '********'}
     ]
 
     const formConfig = {
