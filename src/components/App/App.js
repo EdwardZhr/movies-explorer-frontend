@@ -99,7 +99,7 @@ function App() {
         <Route path='/signin' element={ <Login/> } />
         <Route path='/signup' element={ <Register/> } />
         <Route path='/404' element={ <NotFound/> } />
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path='*' element={<Navigate to='/404' />} />
       </Routes>
       {location.pathname !== '/signin' &&  location.pathname !== '/signup' && location.pathname !== '/404' && location.pathname !== '/profile' && <Footer/>}
       <SidePanel isOpen={isSidePanelOpen} onClose={handleCloseSidePanel} loggedIn={loggedIn} width={width}/>

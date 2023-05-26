@@ -3,18 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 246px;
+    margin-top: 35vh;
 }
 
 @media screen and (max-width: 768px) {
     .not-found {
-        margin-top: 408px;
+        margin-top: 40vh;
     }
 }
 
 @media screen and (max-width: 479px) {
     .not-found {
-        margin-top: 329px;
+        margin-top: 42vh;
     }
 }
 
@@ -47,15 +47,21 @@
 }
 
 .not-found__link {
-    margin: 184px 0 0;
+    margin: 26vh 0 0;
     font-size: 14px;
     line-height: 17px;
     cursor: pointer;
+    padding-bottom: 20px;
 }
+
+.not-found__link:hover {
+    opacity: 0.8;
+}
+
 
 @media screen and (max-width: 479px) {
     .not-found__link {
-        margin: 284px 0 0;
+        margin: 36.4vh 0 0;
         font-size: 12px;
         line-height: 15px;
     }

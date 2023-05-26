@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navigation__ul_logged-in {
+    .navigation__ul_type_logged-in {
         flex-direction: column;
         align-items: center;
         gap: 22px;
@@ -21,7 +21,7 @@
 }
 
 @media screen and (max-width: 479px) {
-    .navigation__ul_logged-in {
+    .navigation__ul_type_logged-in {
         gap: 15px;
     }
 }
@@ -38,20 +38,20 @@
     }
 }
 
-.navigation__li_logged-in {
+.navigation__li_type_logged-in {
     margin-left: 20px;
 }
 
-.navigation__li_logged-in:last-child {
+.navigation__li_type_logged-in:last-child {
     margin-left: 50px;
 }
 
 @media screen and (max-width: 768px) {
-    .navigation__li_logged-in {
+    .navigation__li_type_logged-in {
         margin: 0;
     }
 
-    .navigation__li_logged-in:last-child {
+    .navigation__li_type_logged-in:last-child {
         margin: 0;
         margin-top: auto;
     }
@@ -62,6 +62,10 @@
     font-size: 14px;
     line-height: 18px;
     color: black;
+}
+
+.navigation__link:hover {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {
@@ -79,7 +83,7 @@
     }
 }
 
-.navigation__link_img {
+.navigation__link_type_img {
     width: 26px;
     height: 30px;
     background: url(../../images/profile.svg) center no-repeat;
@@ -104,38 +108,38 @@
     }
 }
 
-.navigation__link_profile {
+.navigation__link_type_profile {
     font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
-    .navigation__link_profile {
+    .navigation__link_type_profile {
         font-size: 14px;
         line-height: 16px;
         padding: 0;
     }
 }
 
-.navigation__link_signup {
+.navigation__link_type_signup {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
 }
 
 @media screen and (max-width: 768px) {
-    .navigation__link_signup {
+    .navigation__link_type_signup {
         padding: 0;
     }
 }
 
 @media screen and (max-width: 479px) {
-    .navigation__link_signup {
+    .navigation__link_type_signup {
         font-size: 10px;
         padding: 0;
     }
 }
 
-.navigation__link_signin {
+.navigation__link_type_signin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,13 +154,13 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navigation__link_signin {
+    .navigation__link_type_signin {
         padding: 0;
     }
 }
 
 @media screen and (max-width: 479px) {
-    .navigation__link_signin {
+    .navigation__link_type_signin {
         font-size: 10px;
         width: 54px;
         height: 26px;

@@ -8,7 +8,7 @@ function Footer() {
             <p className='footer__el'>© 2023</p>
             <div className='footer_nav'>
                 <p className='footer__el'>Жребец Эдвард</p>
-                <a className='footer__el' href='https://github.com/EdwardZhr'>Github</a>
+                <a className='footer__el' target="_blank" rel="noreferrer" href='https://github.com/EdwardZhr'>Github</a>
             </div>
         </div>
       </footer>

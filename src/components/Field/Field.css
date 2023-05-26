@@ -44,9 +44,9 @@
     font-size: 11px;
     line-height: 13px;
     text-align: right;
-    outline: 0;
     border: none;
     padding: 0;
+    outline: 0;
 }
 
 .field__input_edited {
@@ -58,6 +58,14 @@
     padding: 15px;
     box-sizing: border-box;
     text-align: left;
+}
+
+.field__input_edited::placeholder {
+    opacity: 0.6;
+  }
+
+.field__input_edited:focus {
+    outline: 2px solid #A0A0A0;
 }
 
 .field__input_invalid {

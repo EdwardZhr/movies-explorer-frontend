@@ -32,17 +32,19 @@ function Form({title, fields, formConfig, btnText, children}) {
                 <h3 className='form__title'>{title}</h3>
                 <fieldset className='form__set'>
                     {fields.map((item, index)=>{
-                        return (<Field name={item.name} type={item.name==='password' ? 'password' : ''} rules={formConfig[item.name]} text={item.text} control={control} isEdited={true} key={index}/>)
+                        return (<Field name={item.name} type={item.name==='password' ? 'password' : ''} rules={formConfig[item.name]} text={item.text} placeholder={item.placeholder} control={control} isEdited={true} key={index}/>)
                         })
                     }
-                    <span className='form__error'>
+                    {JSON.stringify(errors) !== '{}' && <span className='form__error'>Что-то пошло не так...</span> }
+                    
+                    {/* <span className='form__error'>
                         {fields.map((item)=>{
                             if (errors[item.name]) {
                                 return (errors[item.name].message) 
                             } 
                         })
                     }
-                    </span>
+                    </span> */}
                     <button disabled={JSON.stringify(errors) !== '{}'} className={`form__btn ${(JSON.stringify(errors) !== '{}') &&  'form__btn_disabled'}`}>{btnText}</button>
                 </fieldset>
                 {children}

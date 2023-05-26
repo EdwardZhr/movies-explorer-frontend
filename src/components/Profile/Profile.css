@@ -63,6 +63,10 @@
     width: 150px;
 }
 
+.profile__btn:hover {
+    opacity: 0.8;
+}
+
 @media screen and (max-width: 479px) {
     .profile__btn {
         font-size: 12px;
@@ -73,6 +77,10 @@
 .profile__btn_disabled {
     cursor: auto;
     color: #A0A0A0;
+}
+
+.profile__btn_disabled:hover {
+    opacity: 1;
 }
 
 .profile__btn_exit {

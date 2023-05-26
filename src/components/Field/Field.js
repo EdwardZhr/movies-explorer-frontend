@@ -2,7 +2,7 @@ import {forwardRef, useRef} from 'react';
 import {useController} from 'react-hook-form';
 import './Field.css';
 
-const Field = forwardRef(({ control, rules, name, isEdited, text , type}, ref) =>{
+const Field = forwardRef(({ control, rules, name, isEdited, text , type, placeholder}, ref) =>{
     const {
         field,
         fieldState: { invalid }
@@ -24,6 +24,7 @@ const Field = forwardRef(({ control, rules, name, isEdited, text , type}, ref) =
                 className={`field__input ${isEdited && 'field__input_edited'} ${invalid && 'field__input_invalid'}`} 
                 readOnly={!isEdited}
                 type={type}
+                placeholder={placeholder}
             />
         </label>
     )

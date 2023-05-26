@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 function Register () {
     const fields = [
-        { name: 'name', text: 'Имя'},
-        { name: 'email', text: 'E-mail'},
-        { name: 'password', text: 'Пароль'}
+        { name: 'name', text: 'Имя', placeholder: 'Афанасий'},
+        { name: 'email', text: 'E-mail', placeholder: 'mailbox@gmail.com'},
+        { name: 'password', text: 'Пароль', placeholder: '12345678'}
     ]
 
     const formConfig = {

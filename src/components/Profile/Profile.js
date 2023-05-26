@@ -55,8 +55,8 @@ function Profile({userInfo, setUserInfo}) {
 		<form className='profile__form' onSubmit={handleSubmit(onSubmit)}>
 			<h3 className='profile__title'>{`Привет, ${userInfo.name}!`}</h3>
 			<fieldset className='profile__set'>
-				<Field name='name' rules={formConfig.name} control={control} text='Имя' isEdited={isEdited}/>
-				<Field name='email' rules={formConfig.email} control={control} text='E-mail' isEdited={isEdited}/>
+				<Field name='name' rules={formConfig.name} control={control} text='Имя' placeholder='Афанасий' isEdited={isEdited}/>
+				<Field name='email' rules={formConfig.email} control={control} text='E-mail' placeholder='mailbox@gmail.com' isEdited={isEdited}/>
 				{isEdited && <span className='profile__error'>{errors.name && `${errors.name.message}`} {errors.email && `${errors.email.message}`}</span>}
 				<button disabled={isEdited && (errors.name || errors.email)}  className={`profile__btn ${isEdited && (errors.name || errors.email) &&  'profile__btn_disabled'}`}>{isEdited ? 'Сохранить' : 'Редактировать'}</button>
 				<button className='profile__btn profile__btn_exit' onClick={signOut}>Выйти из аккаунта</button>

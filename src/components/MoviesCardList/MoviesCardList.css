@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.card-list__btn:hover {
+    opacity: 0.8;
+}
+
 .card-list__btn_hidden {
     visibility: hidden;
     margin: 24px auto 0;

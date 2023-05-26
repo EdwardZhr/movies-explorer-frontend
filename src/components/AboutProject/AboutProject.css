@@ -1,5 +1,8 @@
 .about-project {
     padding: 110px 70px;
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 959px) {
@@ -129,7 +132,7 @@
     }
 }
 
-.about-project__bar-el_black {
+.about-project__bar-el_colour_black {
     background-color: black;
     color: white;
 }
