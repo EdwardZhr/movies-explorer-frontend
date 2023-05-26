@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Login (){
     const fields = [
       { name: 'email', text: 'E-mail', placeholder: 'mailbox@gmail.com'},
-      { name: 'password', text: 'Пароль', placeholder: 'Афанасий'}
+      { name: 'password', text: 'Пароль', placeholder: '********'}
     ]
 
     const formConfig = {
