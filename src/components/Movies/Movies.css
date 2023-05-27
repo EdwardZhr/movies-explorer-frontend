@@ -1,0 +1,19 @@
+.movies {
+    padding: 80px 70px 0;
+    position: relative;
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 959px) {
+    .movies {
+        padding: 60px 30px 0;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .movies {
+        padding: 60px 10px 0;
+    }
+}

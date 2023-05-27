@@ -1,0 +1,122 @@
+.techs {
+    background-color: #F5F5F5;
+}
+
+.techs__container {
+    padding: 100px 70px;
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 959px) {
+    .techs__container {
+        padding: 90px 50px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .techs__container {
+        padding: 70px 18px;
+    }
+}
+
+.techs__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.techs__title {
+    margin: 90px 0 0;
+    font-size: 50px;
+    line-height: 58px;
+    font-weight: 400;
+    letter-spacing: calc(-1em * 0.04);
+}
+
+@media screen and (max-width: 959px) {
+    .techs__title {
+        margin: 80px 0 0;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .techs__title {
+        margin: 60px 0 0;
+        font-size: 30px;
+        line-height: 36.31px;
+    }
+}
+
+.techs__subtitle {
+    margin: 26px 0 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 460px;
+    letter-spacing: calc(-1em * 0.04);
+}
+
+@media screen and (max-width: 959px) {
+    .techs__subtitle {
+        margin: 22px 0 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .techs__subtitle {
+        margin: 24px 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
+.techs__ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 90px);
+    justify-content: center;
+    list-style: none; 
+    margin: 100px 0 0;
+    gap: 10px;
+    padding: 0;
+    align-self: normal;
+}
+
+@media screen and (max-width: 959px) {
+    .techs__ul {
+        margin-top: 83px;
+        grid-template-columns: repeat(auto-fit, 84px);
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .techs__ul {
+        margin-top: 50px;
+        padding: 0 26.5px;
+    }
+}
+
+.techs__li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 16.94px;
+    width: 90px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #E8E8E8;
+    letter-spacing: calc(-1em * 0.04);
+}
+
+@media screen and (max-width: 959px) {
+    .techs__li {
+        width: 84px;
+        height: 57px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+}

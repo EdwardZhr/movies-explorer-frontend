@@ -1,0 +1,130 @@
+.form {
+    padding: 70px 0;
+    margin: 0 auto;
+    max-width: 396px;
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+        padding: 232px 0;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .form {
+        padding: 56px 0 30px;
+        max-width: 260px;
+    }
+
+    .form__container {
+        width: 260px;
+    }
+
+    .form__logo {
+        text-align: center;
+        display: block;
+    }
+}
+
+.form__logo:hover {
+    opacity: 0.8;
+}
+
+.form__set {
+    padding: 0;
+    margin: 40px 0 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 390px;
+}
+
+@media screen and (max-width: 479px) {
+    .form__set {
+        margin: 80px 0 0;
+        height: 478px;
+    }
+}
+
+.form__title {
+    margin: 40px 0 0;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+@media screen and (max-width: 479px) {
+    .form__title {
+        margin: 50px 0 0;
+        text-align: center;
+    }
+}
+
+.form__error {
+    margin-top: 10px;
+    color: #FF4062;
+    font-size: 10px;
+    line-height: 12px;
+    white-space: pre-line;
+}
+
+.form__btn {
+    margin: auto auto 0;
+    padding: 0;
+    height: 45px;
+    background: #000000;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: white;
+    border: none;
+    width: 396px;
+    cursor: pointer;
+}
+
+.form__btn:hover {
+    opacity: 0.8;
+}
+
+.form__btn_disabled {
+    background: #A0A0A0;
+    cursor: auto;
+}
+
+.form__btn_disabled:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 479px) {
+    .form__btn {
+        font-size: 12px;
+        line-height: 15px;
+        width: 260px;
+    }
+}
+
+.form__text {
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 479px) {
+    .form__text {
+        margin: 14px 0 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.form__link {
+    color: #000000;
+    text-decoration: none;
+}
+
+.form__link:hover {
+    opacity: 0.8;
+}
