@@ -41,7 +41,7 @@ function Navigation({onOpenSidePanel, isSidePanelOpen, loggedIn, width}) {
     return(
         <nav className='navigation'>
             {
-                (location.pathname === '/'&& unloggedNavLinks) || (isSidePanelOpen && loggedNavLinks) || (!loggedIn && unloggedNavLinks) || ((width > 768 && loggedNavLinks) || (width <= 768 && navBtn) || loggedNavLinks)
+                (isSidePanelOpen && loggedNavLinks) || (!loggedIn && unloggedNavLinks) || ((width > 768 && loggedNavLinks) || (width <= 768 && navBtn) || loggedNavLinks)
             }
         </nav>
     )

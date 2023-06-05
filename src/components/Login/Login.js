@@ -1,7 +1,7 @@
 import Form from '../Form/Form';
 import { Link } from 'react-router-dom';
 
-function Login (){
+function Login ({handleLogin, errText}){
     const fields = [
       { name: 'email', text: 'E-mail', placeholder: 'mailbox@gmail.com'},
       { name: 'password', text: 'Пароль', placeholder: '********'}
@@ -26,10 +26,14 @@ function Login (){
           message: 'В поле "Пароль" должно быть больше 4 символов \n'
         }
       }
-      }
+    }
+    
+    const onSubmit = (data) => {
+      handleLogin(data.email, data.password)
+    }
 
     return (
-      <Form title='Рады видеть!'  btnText='Войти' fields={fields} formConfig={formConfig}>
+      <Form title='Рады видеть!' errText={errText}  btnText='Войти' fields={fields} onSubmit={onSubmit} formConfig={formConfig}>
         <p className='form__text'>Еще не зарегистрированы? <Link to="/signup" className="form__link">Регистрация</Link></p>
       </Form>      
       )

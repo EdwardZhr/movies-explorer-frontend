@@ -1,6 +1,6 @@
 .search-form {
-    display: flex;
-    gap: 41px;
+    display: flex;  
+    column-gap: 41px;
     align-items: center;
     padding-bottom: 83px;
     border-bottom: 1px solid rgba(175, 175, 175, 0.2);
@@ -31,6 +31,11 @@
     align-items: center;
     width: 100%;
     max-width: 932px;
+}
+
+.search-form__field {
+    width: 100%;
+    position: relative;
 }
 
 .search-form__input {
@@ -78,4 +83,14 @@
 
 .search-form__submit-btn:hover {
     opacity: 0.8;
+}
+
+.search-form__error {
+    position: absolute;
+    color: #FF4062;
+    font-size: 10px;
+    line-height: 12px;
+    white-space: pre-line;
+    left: 25px;
+    top: 55px;
 }
