@@ -1,4 +1,6 @@
 
+https://github.com/EdwardZhr/movies-explorer-frontend/pull/2
+
 # movies-explorer-frontend
 
 Фронтенд чать приложения проекта Movies-explorer, со следующими возможностями: авторизация и регистрация пользователей, поиск и сохранение фильмов, редактирование профиля.  
