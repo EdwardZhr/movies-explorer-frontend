@@ -6,6 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 https://drive.google.com/file/d/13s6M7gkJNZ-pwW5mreuDYtOEBnffvqFN/view?usp=share_link
 
+## Пул реквест
+
+https://github.com/EdwardZhr/movies-explorer-frontend/pull/2
+
+## Ссылка на приложение
+
+https://edwardmovies.nomoredomains.monster/
+
 ## Available Scripts
 
 In the project directory, you can run:
