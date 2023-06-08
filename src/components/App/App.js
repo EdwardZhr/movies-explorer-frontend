@@ -34,14 +34,12 @@ function App() {
   const [displayedСards, setDisplayedСards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMoreBtnDisplayed, setIsMoreBtnDisplayed] = useState(false);
-  
-  const [query] = useState(
-    (function () {
-      if (JSON.parse(localStorage.getItem('query'))) {
-        return JSON.parse(localStorage.getItem('query')).query
-        }
-      return {search: '', checkbox: false}
-  })())
+  const [moviesQuery, setMoviesQuery] = useState((function () {
+    if (JSON.parse(localStorage.getItem('query'))) {
+      return JSON.parse(localStorage.getItem('query')).query
+      }
+    return {search: '', checkbox: false}
+})())
 
   const location = useLocation()
   const width  = useResize();
@@ -100,14 +98,19 @@ function App() {
     handleTokenCheck();
   }, [])
 
-  function handleUpdateUserInfo(info) {
-    mainApi.updateUserInfo(info)
+  async function handleUpdateUserInfo(info) {
+    const promise = mainApi.updateUserInfo(info)
     .then((newInfo)=>{
-      setCurrentUser(newInfo);
+      if (newInfo.email) {
+        setCurrentUser(newInfo);
+        return newInfo
+      }
     })
     .catch((err)=>{ 
         console.log(err);
     })
+    const result = await promise
+    return result
 }
 
   function signOut(){
@@ -117,6 +120,7 @@ function App() {
           setLoggedIn(false);
           navigate('/', {replace: true});
           localStorage.removeItem('query');
+          setMoviesQuery({search: '', checkbox: false})
           setMoviesStatus('Начните поиск')
           setMoviesCards([])
         }
@@ -132,9 +136,9 @@ function App() {
     .then((movies)=>{
       const result = movies.filter((movie) => {
         if (query.checkbox) {
-          return  movie.duration <= 40 && movie.nameRU.includes(query.search) 
+          return  movie.duration <= 40 && movie.nameRU.toLowerCase().includes(query.search.toLowerCase()) 
         }
-        return movie.nameRU.includes(query.search)
+        return movie.nameRU.toLowerCase().includes(query.search.toLowerCase())
       }).map((movie) => {
         let isSaved = false
         savedMovieCards.forEach((item) => {
@@ -158,6 +162,7 @@ function App() {
       setMoviesStatus(status)
 
       localStorage.setItem('query', JSON.stringify({query, movies: result, moviesStatus: status}));
+      setMoviesQuery(query)
     })
     .catch((err)=>{ 
       setMoviesStatus('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
@@ -170,9 +175,9 @@ function App() {
   function handleSearchSavedMovies (query) {
     const result = savedMovieCards.filter((movie) => {
       if (query.checkbox) {
-        return  movie.duration <= 40 && movie.nameRU.includes(query.search) 
+        return  movie.duration <= 40 && movie.nameRU.includes.toLowerCase()(query.search.toLowerCase()) 
       }
-      return movie.nameRU.includes(query.search)
+      return movie.nameRU.toLowerCase().includes(query.search.toLowerCase())
     })
 
     const status = (function () {
@@ -231,18 +236,20 @@ function App() {
         })
       })
 
-      setMoviesCards((state) => {
+      if (moviesCards.length !== 0) {
+        setMoviesCards((state) => {
         state.forEach((i) => {
           if (i.id === movie.movieId) {
             i.isSaved = false
           }
         })
-
-
         query.movies = state
         localStorage.setItem('query', JSON.stringify(query))
         return state
       })
+    }
+      
+
     })
     .catch(err => console.log(err))
   }
@@ -261,8 +268,9 @@ function App() {
   });
 
     if (localStorage.getItem('query')) {
-      setMoviesCards(JSON.parse(localStorage.getItem('query')).movies)
-      setMoviesStatus(JSON.parse(localStorage.getItem('query')).moviesStatus)
+      const query = JSON.parse(localStorage.getItem('query'));
+      setMoviesCards(query.movies)
+      setMoviesStatus(query.moviesStatus)
     }
 
     mainApi.getMovies()
@@ -333,7 +341,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <Main /> }  />
           {(loggedIn || isLoginChecked) && <Route path='/movies' element={<ProtectedRoute element={Movies}
-            query={query}
+            query={moviesQuery}
             onMovieSave={handleMovieSave}
             onMovieDelete={handleMovieDelete}
             moviesStatus={moviesStatus}
@@ -355,8 +363,14 @@ function App() {
             onUpdateUserInfo={handleUpdateUserInfo}
             loggedIn={loggedIn}
             signOut={signOut}/>}/>}
-          <Route path='/signin' element={ <Login handleLogin={handleLogin} errText={errStatus}/> } />
-          <Route path='/signup' element={ <Register handleRegister={handleRegister} errText={errStatus}/> } />
+            <Route path='/' element={ <Main /> }  />
+
+          {(loggedIn || isLoginChecked) && <Route path={location.pathname} element={<ProtectedRoute element={Login}
+            handleLogin={handleLogin} errText={errStatus} loggedIn={loggedIn} path='/signin'
+            />}/>}
+          {(loggedIn || isLoginChecked) && <Route path={location.pathname} element={<ProtectedRoute element={Register}
+            handleRegister={handleRegister} errText={errStatus}loggedIn={loggedIn}  path='/signup'
+            />}/>}
           <Route path='/404' element={ <NotFound/> } />
           {(loggedIn || isLoginChecked) && <Route path='*' element={<Navigate to='/404'/>} />}
         </Routes>
