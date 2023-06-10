@@ -16,6 +16,8 @@ import Register from '../Register/Register';
 import useResize from '../../hooks/useResize';
 import NotFound from '../NotFound/NotFound';
 import Preloader from '../Preloader/Preloader';
+import Toast  from '../Toast/Toast';
+import {SHORT_FILM_DURATION, TWELVE_CARDS, EIGHT_CARDS, FIVE_CARDS, SCREEN_SIZE_1280, SCREEN_SIZE_674} from '../../utils/constants'
 import './App.css';
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
   const [isLoginChecked, setIsLoginChecked] = useState(false);
   const [errStatus, setErrStatus] = useState('');
   const [moviesStatus, setMoviesStatus] = useState('Начните поиск');
+  const [toastText, setToastText] = useState('');
+  const [isToastDisplayed, setIsToastDisplayed] = useState(false)
   const [savedMoviesStatus, setSavedMoviesStatus] = useState('Нет сохраненных фильмов');
   const [currentUser,  setCurrentUser] = useState({_id: '', email:'', name:''});
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
@@ -103,6 +107,10 @@ function App() {
     .then((newInfo)=>{
       if (newInfo.email) {
         setCurrentUser(newInfo);
+        displayToast('Профиль успешно изменен')
+        setTimeout(() => {
+          hideToast()
+        }, 1500);
         return newInfo
       }
     })
@@ -136,7 +144,7 @@ function App() {
     .then((movies)=>{
       const result = movies.filter((movie) => {
         if (query.checkbox) {
-          return  movie.duration <= 40 && movie.nameRU.toLowerCase().includes(query.search.toLowerCase()) 
+          return  movie.duration <= SHORT_FILM_DURATION && movie.nameRU.toLowerCase().includes(query.search.toLowerCase()) 
         }
         return movie.nameRU.toLowerCase().includes(query.search.toLowerCase())
       }).map((movie) => {
@@ -175,7 +183,7 @@ function App() {
   function handleSearchSavedMovies (query) {
     const result = savedMovieCards.filter((movie) => {
       if (query.checkbox) {
-        return  movie.duration <= 40 && movie.nameRU.includes.toLowerCase()(query.search.toLowerCase()) 
+        return  movie.duration <= SHORT_FILM_DURATION && movie.nameRU.includes.toLowerCase()(query.search.toLowerCase()) 
       }
       return movie.nameRU.toLowerCase().includes(query.search.toLowerCase())
     })
@@ -294,12 +302,12 @@ function App() {
   }, [location])
 
   useEffect(() => {
-    if(width>=1280) {
-      setAmountCards(12);
-    } else if (width>=674) {
-      setAmountCards(8);
+    if(width>=SCREEN_SIZE_1280) {
+      setAmountCards(TWELVE_CARDS);
+    } else if (width>=SCREEN_SIZE_674) {
+      setAmountCards(EIGHT_CARDS);
     } else {
-      setAmountCards(5);
+      setAmountCards(FIVE_CARDS);
     }
   }, [width])
 
@@ -313,12 +321,12 @@ function App() {
   }, [amountCards, moviesCards])
 
   function displayMoreCards (setAmount, amount) {
-    if (width>=1280) {
-        setAmount(amount + 12);
-      } else if (width>=674) {
-        setAmount(amount + 8);
+    if (width>=SCREEN_SIZE_1280) {
+        setAmount(amount + TWELVE_CARDS);
+      } else if (width>=SCREEN_SIZE_674) {
+        setAmount(amount + EIGHT_CARDS);
       } else {
-        setAmount(amount + 5);
+        setAmount(amount + FIVE_CARDS);
       };
   }
 
@@ -333,6 +341,16 @@ function App() {
   function handleCloseSidePanel() {
     setIsSidePanelOpen(false)
 }
+
+  function displayToast(text) {
+    setIsToastDisplayed(true)
+    setToastText(text)
+  }
+
+  function hideToast(text) {
+    setIsToastDisplayed(false)
+    setToastText('')
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -365,10 +383,10 @@ function App() {
             signOut={signOut}/>}/>}
             <Route path='/' element={ <Main /> }  />
 
-          {(loggedIn || isLoginChecked) && <Route path={location.pathname} element={<ProtectedRoute element={Login}
+          {(loggedIn || isLoginChecked) && <Route path='/signin' element={<ProtectedRoute element={Login}
             handleLogin={handleLogin} errText={errStatus} loggedIn={loggedIn} path='/signin'
             />}/>}
-          {(loggedIn || isLoginChecked) && <Route path={location.pathname} element={<ProtectedRoute element={Register}
+          {(loggedIn || isLoginChecked) && <Route path='/signup' element={<ProtectedRoute element={Register}
             handleRegister={handleRegister} errText={errStatus}loggedIn={loggedIn}  path='/signup'
             />}/>}
           <Route path='/404' element={ <NotFound/> } />
@@ -376,6 +394,7 @@ function App() {
         </Routes>
         {location.pathname !== '/signin' &&  location.pathname !== '/signup' && location.pathname !== '/404' && location.pathname !== '/profile' && (loggedIn || isLoginChecked) && <Footer/>}
         <SidePanel isOpen={isSidePanelOpen} onClose={handleCloseSidePanel} loggedIn={loggedIn} width={width}/>
+        <Toast text={toastText} isDisplayed={isToastDisplayed}/>
         <Preloader isLoading={isLoading}/> 
       </div>
     </CurrentUserContext.Provider>
