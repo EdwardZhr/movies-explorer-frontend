@@ -86,6 +86,7 @@
 .profile__btn_exit {
     margin-top: 16px;
     color: #FF4062;
+    text-align: center;
 }
 
 .profile__error {

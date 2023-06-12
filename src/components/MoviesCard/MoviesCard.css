@@ -12,15 +12,15 @@
     cursor: pointer;
 }
 
-.movies-card__img:hover {
+.movies-card__img:focus {
     opacity: 0.8;
 }
 
-.movies-card__img:hover ~ .movies-card__info .movies-card__title{
+.movies-card__img:focus ~ .movies-card__info .movies-card__title{
     opacity: 0.8;
 }
 
-.movies-card__img:has(~ .movies-card__info .movies-card__title:hover) {
+.movies-card__img:has(~ .movies-card__info .movies-card__title:focus) {
     opacity: 0.8;
 }
 
@@ -59,7 +59,7 @@
     cursor: pointer;
 }
 
-.movies-card__title:hover {
+.movies-card__title:focus {
     opacity: 0.8;
 }
 

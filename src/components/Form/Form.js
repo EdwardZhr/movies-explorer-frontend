@@ -5,23 +5,17 @@ import './Form.css'
 import logo from '../../images/logo.svg';
 
 
-function Form({title, fields, formConfig, btnText, children}) {
+function Form({title, fields, formConfig, btnText, children, onSubmit, errText}) {
     const defaultValues = {};
 
     fields.forEach((item)=> {
         defaultValues[item.name] = '';
     })
 
-    const { handleSubmit, formState: {errors}, control, watch} = useForm({
+    const { handleSubmit, formState: {errors}, control } = useForm({
         defaultValues: defaultValues,
         mode: 'onChange'
       });
-
-    const data = watch();
-
-    const onSubmit = (e) => {
-        console.log(errors)
-    }
 
     return (
         <div className='form'>
@@ -45,6 +39,7 @@ function Form({title, fields, formConfig, btnText, children}) {
                         })
                     }
                     </span> */}
+                    <p className='form__req-err'>{errText}</p>
                     <button disabled={JSON.stringify(errors) !== '{}'} className={`form__btn ${(JSON.stringify(errors) !== '{}') &&  'form__btn_disabled'}`}>{btnText}</button>
                 </fieldset>
                 {children}

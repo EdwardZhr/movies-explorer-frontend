@@ -3,11 +3,11 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 
-function SavedMovies({width, cards, onDisplayMoreCards, isLoading, isMoreBtnDisplayed, savedMovie}) {
+function SavedMovies({width, cards, onDisplayMoreCards, isLoading, isMoreBtnDisplayed, onMovieDelete, moviesStatus, onSearch, query}) {
     return (
       <main className= 'saved-movies'>
-        <SearchForm />
-        <MoviesCardList width={width} cards={cards} savedMovie={savedMovie} onDisplayMoreCards={onDisplayMoreCards} isMoreBtnDisplayed={isMoreBtnDisplayed}/>
+        <SearchForm onSearch={onSearch} query={query}/>
+        <MoviesCardList width={width} cards={cards} onMovieDelete={onMovieDelete} moviesStatus={moviesStatus} onDisplayMoreCards={onDisplayMoreCards} isMoreBtnDisplayed={isMoreBtnDisplayed}/>
         <Preloader isLoading={isLoading}/>  
       </main>
     );

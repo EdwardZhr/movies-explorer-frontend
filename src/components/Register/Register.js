@@ -1,7 +1,7 @@
 import Form from '../Form/Form';
 import { Link } from 'react-router-dom';
 
-function Register () {
+function Register ({handleRegister, errText}) {
     const fields = [
         { name: 'name', text: 'Имя', placeholder: 'Афанасий'},
         { name: 'email', text: 'E-mail', placeholder: 'mailbox@gmail.com'},
@@ -34,10 +34,14 @@ function Register () {
           message: 'В поле "Имя" должно быть больше 2 символов \n'
         }
       }
-      }
-
+    }
+    
+    const onSubmit = (data) => {
+      handleRegister(data.email, data.name, data.password)
+    }
+    
     return (
-      <Form title='Добро пожаловать!'  btnText='Зарегистрироваться' fields={fields} formConfig={formConfig}>
+      <Form title='Добро пожаловать!' errText={errText} btnText='Зарегистрироваться' fields={fields} onSubmit={onSubmit} formConfig={formConfig}>
         <p className='form__text'>Уже зарегистрированы? <Link to="/signin" className="form__link">Войти</Link></p>
       </Form>      
       )

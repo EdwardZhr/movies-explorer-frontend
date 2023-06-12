@@ -1,17 +1,21 @@
-import {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useState, useContext} from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserCintext'
 import {useForm} from 'react-hook-form';
 import Field from '../Field/Field';
 import './Profile.css'
 
 
-function Profile({userInfo, setUserInfo}) {
-  const navigate = useNavigate();
+function Profile({signOut, onUpdateUserInfo}) {
+	
+  const currentUser = useContext(CurrentUserContext);
+
   const [isEdited, setIsEdited] = useState(false);
-  const { handleSubmit, formState: {errors}, control, watch} = useForm({
-    defaultValues: {
-        email: userInfo.email,
-        name: userInfo.name
+  const [serverErr, setServerErr] = useState('')
+
+  const { handleSubmit, formState: {errors}, control, getValues} = useForm({
+    values: {
+        email: currentUser.email,
+        name: currentUser.name
     }
   });
 
@@ -36,30 +40,37 @@ function Profile({userInfo, setUserInfo}) {
 	}
   }
 
-  const data = watch();
-
   const onSubmit = (e) => {
       if (!isEdited) {
         return setIsEdited(true);
       }
-      setIsEdited(false)
-	  setUserInfo({name: data.name, email: data.email})
-    }
+	  const values = getValues();
+	  if (currentUser.email === values.email && currentUser.name === values.name) {
+		setIsEdited(false)
+		return
+	  }
+	  onUpdateUserInfo(values)
+	  .then((res)=>{
+		if (res) {
+			setIsEdited(false)
+			setServerErr('')
+			return
+		}
+		setServerErr('Пользователь с таким email уже существует')
+	  })
 
-    const signOut = (e) => {
-      navigate('/', { replace: true })
     }
 
   return (
 	<div className={`profile ${isEdited && 'profile_edited'}`}>
 		<form className='profile__form' onSubmit={handleSubmit(onSubmit)}>
-			<h3 className='profile__title'>{`Привет, ${userInfo.name}!`}</h3>
+			<h3 className='profile__title'>{`Привет, ${currentUser.name}!`}</h3>
 			<fieldset className='profile__set'>
-				<Field name='name' rules={formConfig.name} control={control} text='Имя' placeholder='Афанасий' isEdited={isEdited}/>
-				<Field name='email' rules={formConfig.email} control={control} text='E-mail' placeholder='mailbox@gmail.com' isEdited={isEdited}/>
-				{isEdited && <span className='profile__error'>{errors.name && `${errors.name.message}`} {errors.email && `${errors.email.message}`}</span>}
+				<Field name='name' rules={formConfig.name} control={control} onChange={setServerErr} text='Имя' placeholder='Афанасий' isEdited={isEdited}/>
+				<Field name='email' rules={formConfig.email} control={control} onChange={setServerErr}text='E-mail' placeholder='mailbox@gmail.com' isEdited={isEdited}/>
+				{isEdited && <span className='profile__error'>{errors.name && `${errors.name.message}`} {errors.email && `${errors.email.message}`} {serverErr}</span>}
 				<button disabled={isEdited && (errors.name || errors.email)}  className={`profile__btn ${isEdited && (errors.name || errors.email) &&  'profile__btn_disabled'}`}>{isEdited ? 'Сохранить' : 'Редактировать'}</button>
-				<button className='profile__btn profile__btn_exit' onClick={signOut}>Выйти из аккаунта</button>
+				<p className='profile__btn profile__btn_exit' onClick={signOut}>Выйти из аккаунта</p>
 			</fieldset>
 		</form>
 	</div>

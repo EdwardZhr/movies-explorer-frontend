@@ -1,9 +1,7 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css'
 
 function Navigation({onOpenSidePanel, isSidePanelOpen, loggedIn, width}) {
-
-    const location = useLocation();
 
     const unloggedNavLinks = 
         <ul className='navigation__ul'>
@@ -41,7 +39,7 @@ function Navigation({onOpenSidePanel, isSidePanelOpen, loggedIn, width}) {
     return(
         <nav className='navigation'>
             {
-                (location.pathname === '/'&& unloggedNavLinks) || (isSidePanelOpen && loggedNavLinks) || (!loggedIn && unloggedNavLinks) || ((width > 768 && loggedNavLinks) || (width <= 768 && navBtn) || loggedNavLinks)
+                (isSidePanelOpen && loggedNavLinks) || (!loggedIn && unloggedNavLinks) || ((width > 768 && loggedNavLinks) || (width <= 768 && navBtn) || loggedNavLinks)
             }
         </nav>
     )
